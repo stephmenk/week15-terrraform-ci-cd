@@ -1,29 +1,34 @@
-pipeline {
+pipeline{
     agent any
-      stages {
-        stage('initialize') {
-            steps {
+    stages{
+        stage(ibit){
+            steps{
                 sh 'terraform init'
             }
         }
-        stage('format the code') {
-            steps {
+        stage(format){
+            steps{
                 sh 'terraform fmt'
             }
         }
-         stage('validate') {
-            steps {
+        stage(validate){
+            steps{
                 sh 'terraform validate'
             }
         }
-        stage('plan') {
-            steps {
+        stage(plan){
+            steps{
                 sh 'terraform plan'
             }
         }
-        stage('apply') {
-            steps {
-                sh 'terraform apply --auto-approve'
+        stage(apply){
+            steps{
+                sh 'terrform apply --auto-approve'
+            }
+        }
+        stage(destroy){
+            steps{
+                sh 'terraform destroy --auto-approve'
             }
         }
     }
